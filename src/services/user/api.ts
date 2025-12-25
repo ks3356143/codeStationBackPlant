@@ -16,6 +16,7 @@ export async function login(body: any, options?: { [key: string]: any }) {
 export async function change_enabled(admin_id: string, enabled: boolean) {
     return request<any>("/api/user/admin_enabled_change", {
         method: "get",
+        skipErrorHandler: true,
         params: {
             admin_id,
             enabled,
