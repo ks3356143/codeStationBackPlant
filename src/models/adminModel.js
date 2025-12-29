@@ -32,7 +32,8 @@ export default {
                     payload: data,
                 });
             } catch (e) {
-                console.log("请求出现错误：", e);
+                toast.error("请求管理员列表出现错误，详情请看控制台!")
+                console.log(e);
             }
         },
         // 2.删除一个管理员

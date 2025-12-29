@@ -6,6 +6,7 @@ import { request } from "@umijs/max";
 function get_all_admin() {
     return request("/api/user/admin", {
         method: "get",
+        skipErrorHandler: true,
     });
 }
 

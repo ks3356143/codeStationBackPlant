@@ -181,7 +181,7 @@ export default defineConfig({
     // 环境变量
     define: {
         "process.env.CI": process.env.CI,
-        API_URL: "http://localhost:8000/",
+        API_URL: "http://localhost:8000",
     },
     //================ 自己的插件 =================
     dva: {},
