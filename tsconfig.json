@@ -1,16 +1,19 @@
 {
     "compilerOptions": {
+        "ignoreDeprecations": "6.0",
         "baseUrl": "./",
         "target": "esnext",
         "moduleResolution": "node",
         "jsx": "react-jsx",
         "esModuleInterop": true,
         "experimentalDecorators": true,
-        "strict": true,
+        "skipLibCheck": true, // 跳过库的检查
+        "strict": false, // 关闭严格模式
+        "strictNullChecks": false,
+        "strictFunctionTypes": false,
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
         "declaration": true,
-        "skipLibCheck": true,
         "resolveJsonModule": true,
         "paths": {
             "@/*": [

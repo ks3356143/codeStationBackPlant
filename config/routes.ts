@@ -50,6 +50,12 @@ export default [
                 name: "添加用户",
                 component: "./userInfo/addUser",
             },
+            {
+                path: "editUser/:id",
+                name: "编辑用户",
+                component: "./userInfo/editUser",
+                hideInMenu: true,
+            },
         ],
     },
     {
