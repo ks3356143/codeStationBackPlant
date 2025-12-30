@@ -1,16 +1,22 @@
 import userApi from "@/api/user";
+import ModalDescription from "@/components/ModalDescription";
 import {
     ActionType,
     PageContainer,
     ProTable,
 } from "@ant-design/pro-components";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useUserColumns from "./hooks/useUserColumns";
+import { UserType } from "./types";
+import useDescColumns from "./hooks/useDescColumns";
 
 // 用户一级页面
 const UserInfo = () => {
+    const [open, setOpen] = useState(false); // ModalDescription显隐
+    const [userInfo, setUserInfo] = useState<UserType | null>(null); // ModalDescription数据
     const actionRef = useRef<ActionType>(null);
-    const { columns } = useUserColumns(actionRef);
+    const { columns } = useUserColumns(actionRef, setOpen, setUserInfo);
+    const descColumns = useDescColumns()
     return (
         <div>
             <PageContainer>
@@ -41,6 +47,12 @@ const UserInfo = () => {
                     }}
                 ></ProTable>
             </PageContainer>
+            <ModalDescription
+                open={open}
+                onClose={() => setOpen(false)}
+                info={userInfo}
+                descColumns={descColumns}
+            />
         </div>
     );
 };

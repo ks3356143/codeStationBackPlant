@@ -39,6 +39,7 @@ export default [
         path: "/userInfo",
         name: "用户",
         icon: "team",
+        hideInBreadcrumb: true,
         routes: [
             {
                 path: "userList",
