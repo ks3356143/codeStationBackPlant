@@ -1,11 +1,16 @@
-import React from 'react'
+import { PageContainer } from "@ant-design/pro-components";
+import BookForm from "./components/bookForm";
 
-type Props = {}
+const AddBook = () => {
+    return (
+        <div>
+            <PageContainer>
+                <div className="container" style={{ width: "1000px" }}>
+                    <BookForm type='add'></BookForm>
+                </div>
+            </PageContainer>
+        </div>
+    );
+};
 
-const AddBook = (props: Props) => {
-  return (
-    <div>新增书籍页面</div>
-  )
-}
-
-export default AddBook
+export default AddBook;

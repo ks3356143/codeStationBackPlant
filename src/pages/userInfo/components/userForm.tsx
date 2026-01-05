@@ -151,7 +151,7 @@ const UserForm = ({ type }: Props) => {
                 <UploadComponent
                     label="头像"
                     name="avatar"
-                    action="/api/common/avatar"
+                    action="/api/common/avatar?file_type=user"
                     max={1}
                     listType="picture-card"
                 />

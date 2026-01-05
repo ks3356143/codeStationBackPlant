@@ -6,9 +6,9 @@ import {
     ProTable,
 } from "@ant-design/pro-components";
 import { useRef, useState } from "react";
+import useDescColumns from "./hooks/useDescColumns";
 import useUserColumns from "./hooks/useUserColumns";
 import { UserType } from "./types";
-import useDescColumns from "./hooks/useDescColumns";
 
 // 用户一级页面
 const UserInfo = () => {
@@ -16,7 +16,7 @@ const UserInfo = () => {
     const [userInfo, setUserInfo] = useState<UserType | null>(null); // ModalDescription数据
     const actionRef = useRef<ActionType>(null);
     const { columns } = useUserColumns(actionRef, setOpen, setUserInfo);
-    const descColumns = useDescColumns()
+    const descColumns = useDescColumns();
     return (
         <div>
             <PageContainer>

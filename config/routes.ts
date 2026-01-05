@@ -63,6 +63,7 @@ export default [
         path: "/book",
         name: "书籍",
         icon: "read",
+        hideInBreadcrumb: true,
         routes: [
             {
                 path: "bookList",
@@ -70,9 +71,15 @@ export default [
                 component: "./book",
             },
             {
-                path: "addAdmin",
+                path: "addBook",
                 name: "添加书籍",
                 component: "./book/addBook",
+            },
+            {
+                path: "editBook/:id",
+                name: "编辑书籍",
+                component: "./book/editBook",
+                hideInMenu: true,
             },
         ],
     },
@@ -87,6 +94,13 @@ export default [
         name: "问答",
         icon: "questionCircle",
         component: "./issue",
+    },
+    {
+        name: " 问答详情",
+        path: "/issue/:id",
+        component: "./issue/issueDetail",
+        access: "NormalAdmin",
+        hideInMenu: true,
     },
     {
         path: "/comment",

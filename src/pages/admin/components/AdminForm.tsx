@@ -134,7 +134,7 @@ const AdminForm = ({
                 <Upload
                     listType="picture-card"
                     maxCount={1}
-                    action="/api/common/avatar"
+                    action="/api/common/avatar?file_type=user"
                 >
                     <div>
                         <PlusOutlined />

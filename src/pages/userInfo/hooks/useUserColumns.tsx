@@ -1,10 +1,11 @@
-import useDeleteUserOrAdmin from "@/pages/admin/hooks/useDeleteUserOrAdmin";
+import adminApi from "@/api/admin";
 import useStatuColumn from "@/pages/admin/hooks/useStatuColumn";
 import type { DataType } from "@/pages/admin/types";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { ProColumns } from "@ant-design/pro-components";
 import { useNavigate } from "@umijs/max";
 import { Avatar, Button, Popconfirm, Switch } from "antd";
+import { toast } from "react-toastify";
 
 export default function (
     actionRef?: any,
@@ -12,7 +13,15 @@ export default function (
     setUserInfo: (userInfo: any) => void = () => {}
 ) {
     const { toggleLoading, handleToggleSwitch } = useStatuColumn(actionRef);
-    const { confirmClick } = useDeleteUserOrAdmin();
+    const handleConfirm = async (record: any) => {
+        try {
+            await adminApi.delete_admin(record.id);
+            toast.success("删除成功");
+            actionRef.current && actionRef.current.reload();
+        } catch (e) {
+            toast.error("删除失败");
+        }
+    };
     const navigate = useNavigate();
     const columns: ProColumns<DataType>[] = [
         {
@@ -75,7 +84,7 @@ export default function (
             align: "center",
             fixed: "right",
             width: 200,
-            render: (_, record, __, action) => {
+            render: (_, record) => {
                 return (
                     <div>
                         <Button
@@ -101,7 +110,7 @@ export default function (
                         </Button>
                         <Popconfirm
                             title="确定删除该管理员?"
-                            onConfirm={() => confirmClick(record)}
+                            onConfirm={() => handleConfirm(record)}
                             okText="确认"
                             cancelText="取消"
                         >
