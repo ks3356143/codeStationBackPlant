@@ -124,7 +124,9 @@ export default function (actionRef: RefObject<ActionType>) {
                         <Button
                             type="link"
                             size="small"
-                            onClick={() => navigate(`/issue/${row.id}`)}
+                            onClick={() =>
+                                navigate(`/issue/${row.id}`, { state: row })
+                            }
                         >
                             详情
                         </Button>

@@ -1,12 +1,16 @@
 import issueApi from "@/api/issue";
-import { ActionType, PageContainer, ProTable } from "@ant-design/pro-components";
+import {
+    ActionType,
+    PageContainer,
+    ProTable,
+} from "@ant-design/pro-components";
 import { useRef } from "react";
 import useIssueColumns from "./hooks/useIssueColumns";
 
 // 问答一级页面
 const Issue = () => {
     const actionRef = useRef<ActionType>(null);
-    const {columns} = useIssueColumns(actionRef)
+    const { columns } = useIssueColumns(actionRef);
     return (
         <PageContainer>
             <ProTable
@@ -22,6 +26,7 @@ const Issue = () => {
                         page_size: pageSize,
                         type: rest.type ? rest.type : "all",
                         enabled: rest.enabled ? rest.enabled : "all",
+                        issueTitle: rest.issueTitle ? rest.issueTitle : "",
                     });
                     return {
                         data: res.data.results,

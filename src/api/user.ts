@@ -30,7 +30,27 @@ export default {
     updateUser(id: string, data: any) {
         return request(`/api/user/user/${id}`, {
             method: "patch",
+            skipErrorHandler: true,
             data,
+        });
+    },
+    /**
+     * 登录
+     */
+    login(data: { username: string; password: string }) {
+        return request("/api/user/pair", {
+            method: "post",
+            skipErrorHandler: true,
+            data,
+        });
+    },
+    /**
+     * 分页获取用户信息
+     */
+    getUserInfo() {
+        return request("/api/user/get_info", {
+            method: "get",
+            skipErrorHandler: true,
         });
     },
 };

@@ -12,26 +12,40 @@
  */
 export default [
     {
+        path: "/",
+        redirect: "/home",
+        access: 'NormalAdmin',
+    },
+    {
         path: "/home",
         name: "首页",
         icon: "home",
         component: "./home",
+        access: 'NormalAdmin',
+    },
+    {
+        path: "/login",
+        component: "./Login",
+        menuRender: false,
     },
     {
         path: "/admin",
         name: "管理员",
         hideInBreadcrumb: true,
+        access: 'SuperAdmin',
         icon: "user",
         routes: [
             {
                 path: "adminList",
                 name: "管理员列表",
                 component: "./admin",
+                access: 'SuperAdmin',
             },
             {
                 path: "addAdmin",
                 name: "添加管理员",
                 component: "./admin/addAdmin",
+                access: 'SuperAdmin',
             },
         ],
     },
@@ -39,23 +53,27 @@ export default [
         path: "/userInfo",
         name: "用户",
         icon: "team",
+        access: 'NormalAdmin',
         hideInBreadcrumb: true,
         routes: [
             {
                 path: "userList",
                 name: "用户列表",
                 component: "./userInfo",
+                access: 'NormalAdmin',
             },
             {
                 path: "addUser",
                 name: "添加用户",
                 component: "./userInfo/addUser",
+                access: 'NormalAdmin',
             },
             {
                 path: "editUser/:id",
                 name: "编辑用户",
                 component: "./userInfo/editUser",
                 hideInMenu: true,
+                access: 'NormalAdmin',
             },
         ],
     },
@@ -64,22 +82,26 @@ export default [
         name: "书籍",
         icon: "read",
         hideInBreadcrumb: true,
+        access: 'NormalAdmin',
         routes: [
             {
                 path: "bookList",
                 name: "书籍列表",
                 component: "./book",
+                access: 'NormalAdmin',
             },
             {
                 path: "addBook",
                 name: "添加书籍",
                 component: "./book/addBook",
+                access: 'NormalAdmin',
             },
             {
                 path: "editBook/:id",
                 name: "编辑书籍",
                 component: "./book/editBook",
                 hideInMenu: true,
+                access: 'NormalAdmin',
             },
         ],
     },
@@ -88,36 +110,37 @@ export default [
         name: "面试题",
         icon: "form",
         component: "./interview",
+        access: 'NormalAdmin',
     },
     {
         path: "/issue",
         name: "问答",
         icon: "questionCircle",
         component: "./issue",
+        access: 'NormalAdmin',
     },
     {
         name: " 问答详情",
         path: "/issue/:id",
         component: "./issue/issueDetail",
-        access: "NormalAdmin",
         hideInMenu: true,
+        access: 'NormalAdmin',
     },
     {
         path: "/comment",
         name: "评论",
         icon: "comment",
         component: "./comment",
+        access: 'NormalAdmin',
     },
     {
         path: "/type",
         name: "类型",
         icon: "appstore",
         component: "./type",
+        access: 'NormalAdmin',
     },
-    {
-        path: "/",
-        redirect: "/home",
-    },
+
     {
         component: "404",
         layout: false,

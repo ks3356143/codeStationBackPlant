@@ -1,6 +1,10 @@
-import { useModel } from "@umijs/max";
+import { LogoutOutlined } from "@ant-design/icons";
+import { history, useModel } from "@umijs/max";
+import { MenuProps, Spin } from "antd";
 import { createStyles } from "antd-style";
 import React from "react";
+import { flushSync } from "react-dom";
+import HeaderDropdown from "../HeaderDropdown";
 
 export type GlobalHeaderRightProps = {
     menu?: boolean;
@@ -38,4 +42,80 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({
     /**
      * 退出登录，并且将当前的 url 保存
      */
+    const loginOut = async () => {
+        await (async function () {
+            localStorage.removeItem("adminToken");
+        })();
+        const { search, pathname } = window.location;
+        const urlParams = new URL(window.location.href).searchParams;
+        const searchParams = new URLSearchParams({
+            redirect: pathname + search,
+        });
+        /** 此方法会跳转到 redirect 参数所在的位置 */
+        const redirect = urlParams.get("redirect");
+        // Note: There may be security issues, please note
+        if (window.location.pathname !== "/login" && !redirect) {
+            history.replace({
+                pathname: "/login",
+                search: searchParams.toString(),
+            });
+        }
+    };
+    const { styles } = useStyles();
+
+    const { initialState, setInitialState } = useModel("@@initialState");
+
+    const onMenuClick: MenuProps["onClick"] = (event) => {
+        const { key } = event;
+        if (key === "logout") {
+            flushSync(() => {
+                setInitialState((s) => ({ ...s, currentUser: undefined }));
+            });
+            loginOut();
+            return;
+        }
+        history.push(`/account/${key}`);
+    };
+
+    const loading = (
+        <span className={styles.action}>
+            <Spin
+                size="small"
+                style={{
+                    marginLeft: 8,
+                    marginRight: 8,
+                }}
+            />
+        </span>
+    );
+
+    if (!initialState) {
+        return loading;
+    }
+
+    const { currentUser } = initialState;
+
+    if (!currentUser || !currentUser.name) {
+        return <></>;
+    }
+
+    const menuItems = [
+        {
+            key: "logout",
+            icon: <LogoutOutlined />,
+            label: "退出登录",
+        },
+    ];
+
+    return (
+        <HeaderDropdown
+            menu={{
+                selectedKeys: [],
+                onClick: onMenuClick,
+                items: menuItems,
+            }}
+        >
+            {children}
+        </HeaderDropdown>
+    );
 };

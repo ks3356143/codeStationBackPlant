@@ -19,11 +19,13 @@ export default {
             page_size?: number;
             type?: string | "all";
             enabled?: boolean | "all";
+            issueTitle?: string;
         } = {
             page: 1,
             page_size: 10,
             type: "all",
             enabled: "all",
+            issueTitle: "",
         }
     ) {
         return request("/api/issue", {
