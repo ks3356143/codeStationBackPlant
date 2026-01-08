@@ -41,10 +41,8 @@ export default function useAdminTable(handleEdit: Function) {
                     url = "";
                 }
                 const defaultAvatar =
-                    "http://localhost:8000/media/user_avatar/default_avatar.png";
-                const imgSrc = url
-                    ? `http://localhost:8000/${url}`
-                    : defaultAvatar;
+                    API_URL + "/api/media/user_avatar/default_avatar.png";
+                const imgSrc = url ? `${API_URL}${url}` : defaultAvatar;
                 return (
                     <Image
                         alt="头像"

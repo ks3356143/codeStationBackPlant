@@ -1,2 +1,0 @@
-(("undefined"!=typeof globalThis?globalThis:self)["makoChunk_ant-design-pro"]=("undefined"!=typeof globalThis?globalThis:self)["makoChunk_ant-design-pro"]||[]).push([["27b73179"],{"27b73179":function(_,e,n){"use strict";!function _(){if("undefined"!=typeof __REACT_DEVTOOLS_GLOBAL_HOOK__&&"function"==typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE)try{__REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(_);}catch(_){console.error(_);}}(),_.exports=n("c5ae36af");}}]);
-//# sourceMappingURL=27b73179-async.e0ae6c48.js.map

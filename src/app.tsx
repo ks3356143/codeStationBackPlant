@@ -170,7 +170,7 @@ const authHeaderInterceptor = (url: string, options: RequestConfig) => {
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request: RequestConfig = {
-    baseURL: isDev ? "/" : "http://localhost:8000",
+    baseURL: isDev ? "/" : "http://47.108.230.220:8082",
     ...errorConfig,
     requestInterceptors: [authHeaderInterceptor],
 };

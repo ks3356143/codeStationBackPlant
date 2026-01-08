@@ -7,8 +7,8 @@ import proxy from "./proxy";
 
 import routes from "./routes";
 
-const { UMI_ENV = "dev" } = process.env;
-
+const { UMI_ENV = "dev", NODE_ENV } = process.env;
+const isDev = NODE_ENV === "development";
 /**
  * @name 使用公共路径
  * @description 部署时的路径，如果部署在非根目录下，需要配置这个变量
@@ -181,7 +181,7 @@ export default defineConfig({
     // 环境变量
     define: {
         "process.env.CI": process.env.CI,
-        API_URL: "http://localhost:8000",
+        API_URL: isDev ? "" : "http://47.108.230.220:8082",
     },
     //================ 自己的插件 =================
     dva: {},

@@ -19,7 +19,7 @@ export default {
     test: {
         // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
         "/api/": {
-            target: "http://localhost:8000/",
+            target: "http://localhost:8000",
             changeOrigin: true,
             pathRewrite: { "^": "" },
         },

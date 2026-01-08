@@ -32,6 +32,7 @@ const Login = () => {
             } catch (e) {
                 const errMessage = e.response?.data?.errorMessage;
                 toast.error(errMessage ? errMessage : "登录失败，请检查输入");
+                console.log(e);
             } finally {
                 setSliderValue(0);
             }

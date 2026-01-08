@@ -56,8 +56,8 @@ const Admin = () => {
                     ...adminInfo,
                     avatar:
                         adminInfo.avatar!.length > 0
-                            ? adminInfo.avatar![0].url.replaceAll(
-                                  API_URL + "/media/",
+                            ? adminInfo.avatar![0].url.replace(
+                                  API_URL + "/api/media/",
                                   ""
                               )
                             : "",
@@ -71,8 +71,13 @@ const Admin = () => {
                 reset();
                 toast.success("修改成功!");
             } catch (e: any) {
-                const errorData = e.response.data;
-                toast.error(errorData.errorMessage);
+                if (e.response?.data) {
+                    const errorData = e.response.data;
+                    toast.error(errorData.errorMessage);
+                } else {
+                    toast.error("修改失败!请联系管理员!");
+                    console.log("异常处理信息：", e);
+                }
             }
         });
         reset();
